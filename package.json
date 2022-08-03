@@ -1,0 +1,20 @@
+{
+  "name": "udemy-playwright",
+  "version": "1.0.0",
+  "description": "Automated software testing with playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --browser=all",
+    "test:open": "npx playwright test --headed --browser=all",
+    "firefox": "npx playwright test --browser=firefox",
+    "firefox:open": "npx playwright test --headed --browser=firefox",
+    "chromium": "npx playwright test",
+    "chromium:open": "npx playwright test --headed"
+  },
+  "author": "Salome Aristizabal Giraldo (www.github.com/salitomeyo)",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.24.2",
+    "prettier": "^2.7.1"
+  }
+}
