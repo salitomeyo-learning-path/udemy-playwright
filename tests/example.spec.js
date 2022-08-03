@@ -16,7 +16,7 @@ test("Clickin on Elements", async ({ page }) => {
     await expect(errorMessage).toContainText('Login and/or password are wrong.')
 })
 
-test.skip("Selectors", async ({ page }) =>{
+test.skip("Selectors @myTag", async ({ page }) =>{
     // text
     await page.click('text=some text')
     // css selectors
@@ -32,7 +32,7 @@ test.skip("Selectors", async ({ page }) =>{
 })
 
 test.describe('My first test suite', () => {
-    test.only("Working with inputs", async({ page }) => {
+    test("Working with inputs", async({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
         await page.click('#signin_button')
     
@@ -44,7 +44,7 @@ test.describe('My first test suite', () => {
         await expect(errorMessage).toContainText('Login and/or password are wrong.')
     })
     
-    test.only("Assertions", async({ page }) => {
+    test("Assertions @myTag", async({ page }) => {
         await page.goto('https://example.com/')
         await expect(page).toHaveURL('https://example.com/')
         await expect(page).toHaveTitle('Example Domain')
