@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npx playwright test --browser=all",
     "test:open": "npx playwright test --headed --browser=all",
-    "firefox": "npx playwright test --browser=firefox",
-    "firefox:open": "npx playwright test --headed --browser=firefox",
+    "firefox": "npx playwright test --config=playwright.config.ts --project=Firefox",
+    "firefox:open": "npx playwright test --headed --config=playwright.config.ts --project=Webkit",
     "chromium": "npx playwright test",
     "chromium:open": "npx playwright test --headed",
     "webkit": "npx playwright test --config=playwright.config.ts --project=Webkit",

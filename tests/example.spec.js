@@ -58,3 +58,14 @@ test.describe('My first test suite', () => {
         await expect(nonExistingElement).not.toBeVisible()
     })
 })
+
+test("Screenshots", async ({ page }) => {
+    await page.goto('https://example.com/')
+    await page.screenshot({ path: "screenshots/screenshot.png", fullPage: true })
+})
+
+test("Single element Screenshot", async ({ page }) => {
+    await page.goto('https://example.com/')
+    const element = await page.locator('h1')
+    await element.screenshot({ path: "screenshots/title_screenshot.png" })
+})
