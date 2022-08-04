@@ -76,5 +76,6 @@ test.describe.only('Hooks', () => {
 
 test.only("Custom testers", async ({ page }) => {
     await loadHomepage(page)
+    await page.pause()
     await assertTitle(page)
 })
