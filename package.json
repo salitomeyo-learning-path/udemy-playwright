@@ -6,13 +6,15 @@
   "scripts": {
     "test": "npx playwright test --browser=all",
     "test:open": "npx playwright test --headed --browser=all",
-    "firefox": "npx playwright test --browser=firefox",
-    "firefox:open": "npx playwright test --headed --browser=firefox",
-    "chromium": "npx playwright test",
-    "chromium:open": "npx playwright test --headed",
+    "firefox": "npx playwright test --config=playwright.config.ts --project=Firefox",
+    "firefox:open": "npx playwright test --headed --config=playwright.config.ts --project=Firefox",
+    "chromium": "npx playwright test --config=playwright.config.ts --project=Chromium",
+    "chromium:open": "npx playwright test --headed --config=playwright.config.ts --project=Firefox",
     "webkit": "npx playwright test --config=playwright.config.ts --project=Webkit",
     "tag:myTag": "npx playwright test --grep @myTag",
-    "tag:-myTag": "npx playwright test --grep-invert @myTag"
+    "tag:-myTag": "npx playwright test --grep-invert @myTag",
+    "webkit:html": "npx playwright test --config=playwright.config.ts --project=Webkit --reporter=html",
+    "html:report": "npx playwright show-report"
   },
   "author": "Salome Aristizabal Giraldo (www.github.com/salitomeyo)",
   "license": "ISC",
