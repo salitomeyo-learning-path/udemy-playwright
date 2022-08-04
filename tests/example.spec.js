@@ -60,7 +60,7 @@ test.describe('My first test suite', () => {
     })
 })
 
-test.describe.only('Hooks', () => {
+test.describe.parallel.only('Hooks', () => {
     test.beforeEach(async ({page}) => {
         await page.goto('https://example.com/')
     })
@@ -74,7 +74,7 @@ test.describe.only('Hooks', () => {
     })
 })
 
-test.only("Custom testers", async ({ page }) => {
+test("Custom testers", async ({ page }) => {
     await loadHomepage(page)
     await assertTitle(page)
 })
