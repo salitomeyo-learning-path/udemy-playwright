@@ -5,7 +5,7 @@ test.describe("Login / Logout flow", () => {
         await page.goto('http://zero.webappsecurity.com/')
     })
 
-    test.only('Negative Scenario for login', async ({ page }) => {
+    test('Negative Scenario for login', async ({ page }) => {
         await page.click('#signin_button')
         await page.type('#user_login', 'wrong username')
         await page.type('#user_password', 'wrong password')
@@ -21,6 +21,7 @@ test.describe("Login / Logout flow", () => {
         await page.type('#user_password', 'password')
         await page.click('text=Sign in')
 
+        await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
         const accountSummaryTab = await page.locator('#account_summary_tab')
         await expect(accountSummaryTab).toBeVisible()
 
