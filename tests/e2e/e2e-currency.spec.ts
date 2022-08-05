@@ -1,28 +1,34 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
+import { HomePage } from '../../pages/HomePage'
+import { LoginPage } from '../../pages/LoginPage'
+import { CurrencyPage } from '../../pages/CurrencyPage'
 
-test.describe.only("Purchase foreign currency cash", () => {
+import { Navbar } from '../../pages/components/Navbar'
+
+test.describe("Purchase foreign currency cash", () => {
+    let homePage: HomePage
+    let loginPage: LoginPage
+    let currencyPage: CurrencyPage
+
+    let navbar: Navbar
+
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#signin_button')
-        await page.type('#user_login', 'username')
-        await page.type('#user_password', 'password')
-        await page.click('text=Sign in')
-        await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
+        homePage = new HomePage(page)
+        loginPage = new LoginPage(page)
+        currencyPage = new CurrencyPage(page)
+
+        navbar = new Navbar(page)
+
+        await homePage.visit()
+        await homePage.clickOnSignIn()
+        await loginPage.login('username', 'password')
+        await homePage.visitTransferFunds()
     })
 
-    test("Should purchase foreign cash", async ({ page }) => {
-        await page.click('#pay_bills_tab')
-        await page.click("a[href='#ui-tabs-3']")
-        await page.selectOption('#pc_currency', 'JPY')
-        await page.waitForSelector('#sp_sell_rate')
-        await page.type('#pc_amount', '600')
-        await page.click('#pc_inDollars_true')
-        await page.click('#pc_calculate_costs')
-        await page.waitForSelector('#pc_conversion_amount')
-        await page.click('#purchase_cash')
+    test("Should purchase foreign cash", async () => {
+        await navbar.clickOnTab('Pay Bills')
+        await currencyPage.fillCurrencyForm('JPY', '600')
 
-        const message = page.locator('#alert_content')
-        await expect(message).toBeVisible()
-        await expect(message).toHaveText('Foreign currency cash was successfully purchased.')
+        await currencyPage.assertSuccessMessage()
     })
 })

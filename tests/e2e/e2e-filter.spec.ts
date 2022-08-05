@@ -1,27 +1,39 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
+import { HomePage } from '../../pages/HomePage'
+import { LoginPage } from '../../pages/LoginPage'
+import { FilterPage } from '../../pages/FilterPage'
+
+import { Navbar } from '../../pages/components/Navbar'
 
 test.describe("Filter transactions", () => {
+    let homePage: HomePage
+    let loginPage: LoginPage
+    let filterPage: FilterPage
+
+    let navbar: Navbar
+
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#signin_button')
-        await page.type('#user_login', 'username')
-        await page.type('#user_password', 'password')
-        await page.click('text=Sign in')
-        await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
+        homePage = new HomePage(page)
+        loginPage = new LoginPage(page)
+        filterPage = new FilterPage(page)
+
+        navbar = new Navbar(page)
+
+        await homePage.visit()
+        await homePage.clickOnSignIn()
+        await loginPage.login('username', 'password')
+        await homePage.visitTransferFunds()
     })
 
-    test("Verify the results for each account", async({ page }) => {
-        await page.click('#account_activity_tab')
-        await page.selectOption('#aa_accountId', '2')
-        const checkingAccount = await page.locator('#all_transactions_for_account tbody tr')
-        await expect(checkingAccount).toHaveCount(3)
+    test("Verify the results for each account", async() => {
+        await navbar.clickOnTab('Account Activity')
+        await filterPage.selectAccount('2')
+        await filterPage.checkAccountResults(3)
 
-        await page.selectOption('#aa_accountId', '4')
-        const loanAccount = await page.locator('#all_transactions_for_account tbody tr')
-        await expect(loanAccount).toHaveCount(2)
+        await filterPage.selectAccount('4')
+        await filterPage.checkAccountResults(2)
 
-        await page.selectOption('#aa_accountId', '6')
-        const noResults = await page.locator('.well')
-        await expect(noResults).toBeVisible()
+        await filterPage.selectAccount('6')
+        await filterPage.checkAccountNoResults()
     })
 })
