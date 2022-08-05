@@ -1,23 +1,27 @@
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../../pages/LoginPage'
+import { HomePage } from '../../pages/HomePage'
 
-test.describe.only("Login / Logout flow", () => {
+test.describe("Login / Logout flow", () => {
     let loginPage: LoginPage
+    let homePage: HomePage
 
     test.beforeEach(async ({ page }) =>{
         loginPage = new LoginPage(page)
-        await loginPage.visit()
+        homePage = new HomePage(page)
+
+        await homePage.visit()
     })
 
     test('Negative Scenario for login', async ({ page }) => {
-        await page.click('#signin_button')
-        loginPage.login('wrong username', 'wrong password')
-        loginPage.assertErrorMessage()
+        await homePage.clickOnSignIn()
+        await loginPage.login('wrong username', 'wrong password')
+        await loginPage.assertErrorMessage()
     })
 
     test('Positive Scenario for login + logout', async ({ page }) => {
-        await page.click('#signin_button')
-        loginPage.login('username', 'password')
+        await homePage.clickOnSignIn()
+        await loginPage.login('username', 'password')
 
         await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
         const accountSummaryTab = await page.locator('#account_summary_tab')

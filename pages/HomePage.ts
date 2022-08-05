@@ -1,0 +1,27 @@
+import { expect, Locator, Page} from '@playwright/test'
+
+export class HomePage {
+    readonly page: Page
+    readonly signInBtn: Locator
+    readonly searchBar: Locator
+
+    constructor(page: Page) {
+        this.page = page
+        this.signInBtn = page.locator('#signin_button')
+        this.searchBar = page.locator('#searchTerm')
+    }
+
+    async visit() {
+        await this.page.goto('http://zero.webappsecurity.com/')
+    }
+
+    async clickOnSignIn() {
+        await this.signInBtn.click()
+    }
+
+    async searchFor(phrase: string) {
+        await this.searchBar.type(phrase)
+        await this.page.keyboard.press('Enter')
+    }
+}
+
