@@ -14,7 +14,8 @@
     "tag:myTag": "npx playwright test --grep @myTag",
     "tag:-myTag": "npx playwright test --grep-invert @myTag",
     "webkit:html": "npx playwright test --config=playwright.config.ts --project=Webkit --reporter=html",
-    "html:report": "npx playwright show-report"
+    "html:report": "npx playwright show-report",
+    "test:e2e": "playwright test --config=e2e.config.ts --project=Chromium"
   },
   "author": "Salome Aristizabal Giraldo (www.github.com/salitomeyo)",
   "license": "ISC",
