@@ -13,7 +13,6 @@ test.describe("Search results", () => {
     test('Should find search result', async ({ page }) => {
         await homePage.searchFor('bank')
 
-        const numberOfLinks = await page.locator('li > a')
-        await expect(numberOfLinks).toHaveCount(2)
+        await homePage.checkLinksQuantity(2)
     })
 })

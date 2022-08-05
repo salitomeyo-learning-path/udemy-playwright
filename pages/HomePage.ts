@@ -5,12 +5,14 @@ export class HomePage {
     readonly signInBtn: Locator
     readonly feedbackBtn: Locator
     readonly searchBar: Locator
+    readonly links: Locator
 
     constructor(page: Page) {
         this.page = page
         this.signInBtn = page.locator('#signin_button')
         this.feedbackBtn = page.locator('#feedback')
         this.searchBar = page.locator('#searchTerm')
+        this.links = page.locator('li > a')
     }
 
     async visit() {
@@ -32,6 +34,10 @@ export class HomePage {
     async searchFor(phrase: string) {
         await this.searchBar.type(phrase)
         await this.page.keyboard.press('Enter')
+    }
+
+    async checkLinksQuantity(linksQuantity: number) {
+        await expect(this.links).toHaveCount(linksQuantity)
     }
 }
 
