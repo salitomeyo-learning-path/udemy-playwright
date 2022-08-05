@@ -17,6 +17,10 @@ export class HomePage {
         await this.page.goto('http://zero.webappsecurity.com/')
     }
 
+    async visitTransferFunds() {
+        await this.page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
+    }
+
     async clickOnSignIn() {
         await this.signInBtn.click()
     }
