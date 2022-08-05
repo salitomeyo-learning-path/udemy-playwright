@@ -19,3 +19,15 @@ There are too many ways to invoke the test, because of this i will put some of t
     "tag:myTag": "npx playwright test --grep @myTag",
     "tag:-myTag": "npx playwright test --grep-invert @myTag",
 ```
+
+* If the snapshots haven been created it will be necessary to run the following command two times, the first one will create the snapshots and the second one will compare them, and it is important to keep in mind you have to run the commands for every browser separatedly
+
+```
+    playwright test --config=visual.config.ts --project=Chromium"
+```
+
+* Also if the snapshots were already created and they mus be updated we can use the following flag
+
+```
+    playwright test --config=visual.config.ts --project=Chromium --update-snapshots
+```
