@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { HomePage } from '../../pages/HomePage'
 import { LoginPage } from '../../pages/LoginPage'
 import { CurrencyPage } from '../../pages/CurrencyPage'
@@ -25,7 +25,7 @@ test.describe("Purchase foreign currency cash", () => {
         await homePage.visitTransferFunds()
     })
 
-    test("Should purchase foreign cash", async ({ page }) => {
+    test("Should purchase foreign cash", async () => {
         await navbar.clickOnTab('Pay Bills')
         await currencyPage.fillCurrencyForm('JPY', '600')
 

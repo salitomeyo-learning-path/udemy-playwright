@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { HomePage } from '../../pages/HomePage'
 
 test.describe("Search results", () => {
@@ -10,7 +10,7 @@ test.describe("Search results", () => {
         await homePage.visit()
     })
 
-    test('Should find search result', async ({ page }) => {
+    test('Should find search result', async () => {
         await homePage.searchFor('bank')
 
         await homePage.checkLinksQuantity(2)

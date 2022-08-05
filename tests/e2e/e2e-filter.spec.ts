@@ -1,11 +1,11 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { HomePage } from '../../pages/HomePage'
 import { LoginPage } from '../../pages/LoginPage'
 import { FilterPage } from '../../pages/FilterPage'
 
 import { Navbar } from '../../pages/components/Navbar'
 
-test.describe.only("Filter transactions", () => {
+test.describe("Filter transactions", () => {
     let homePage: HomePage
     let loginPage: LoginPage
     let filterPage: FilterPage
@@ -25,7 +25,7 @@ test.describe.only("Filter transactions", () => {
         await homePage.visitTransferFunds()
     })
 
-    test("Verify the results for each account", async({ page }) => {
+    test("Verify the results for each account", async() => {
         await navbar.clickOnTab('Account Activity')
         await filterPage.selectAccount('2')
         await filterPage.checkAccountResults(3)
