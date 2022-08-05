@@ -1,31 +1,30 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../pages/HomePage'
+import { FeedbackPage } from '../../pages/FeedbackPage'
 
-test.describe('Feedback form', () => {
+test.describe.only('Feedback form', () => {
+    let homePage: HomePage
+    let feedbackPage: FeedbackPage
+
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click("#feedback")
+        homePage = new HomePage(page)
+        feedbackPage = new FeedbackPage(page)
+
+        await homePage.visit()
+        await homePage.clickOnFeedback()
     })
 
     test("Reset feedback form", async ({ page }) => {
-        await page.type("#name", "some name")
-        await page.type("#email", "some email@email.com")
-        await page.type("#subject", "some subject")
-        await page.type("#comment", "some nice comment about the application")
+        await feedbackPage.fillForm('some name', 'some email@email.com', 'some subject', 'some nice comment about the application')
 
-        await page.click("input[name='clear']")
-        const nameInput = await page.locator('#name')
-        const commentInput = await page.locator('#comment')
-        await expect(nameInput).toBeEmpty()
-        await expect(commentInput).toBeEmpty()
+        await feedbackPage.resetForm()
+        await feedbackPage.assertReset()
     })
 
     test("Submit feedback form", async ({ page }) => {
-        await page.type("#name", "some name")
-        await page.type("#email", "some email@email.com")
-        await page.type("#subject", "some subject")
-        await page.type("#comment", "some nice comment about the application")
-        await page.click("input[type='submit']")
+        await feedbackPage.fillForm('some name', 'some email@email.com', 'some subject', 'some nice comment about the application')
 
-        await page.waitForSelector('#feedback-title')
+        await feedbackPage.submitForm()
+        await feedbackPage.feedbackFormSent()
     })
 })
