@@ -13,7 +13,7 @@ test.describe.parallel("API Testing", () => {
         expect(response.status()).toBe(404)
     })
 
-    test('Get reques - Get user detail', async ({ request }) => {
+    test('GET request - Get user detail', async ({ request }) => {
         const response = await request.get(baseUrl+'/users/5')
         const responseBody = JSON.parse(await response.text())
 
@@ -21,5 +21,44 @@ test.describe.parallel("API Testing", () => {
         expect(responseBody.data.id).toBe(5)
         expect(responseBody.data.first_name).toBe('Charles')
         expect(responseBody.data.email).toBeTruthy()  
+    })
+
+    test('POST Request - Create new user', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/user`, {
+            data: {
+                id: 100
+            },
+        })
+        expect(response.status()).toBe(201)
+
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.id).toBe(100)
+        expect(responseBody.createdAt).toBeTruthy()
+    })
+
+    test('POST Request - Login', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/login`, {
+            data: {
+                email: "eve.holt@reqres.in",
+                password: "cityslicka"
+            },
+        })
+        expect(response.status()).toBe(200)
+
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.token).toBeTruthy()
+    })
+
+    test('POST Request - Login fail', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/login`, {
+            data: {
+                email: "any_email@email.com",
+                password: "random_password"
+            },
+        })
+        expect(response.status()).toBe(400)
+
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.error).toBe('user not found')
     })
 })
