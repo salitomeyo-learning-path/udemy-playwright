@@ -31,3 +31,39 @@ There are too many ways to invoke the test, because of this i will put some of t
 ```
     playwright test --config=visual.config.ts --project=Chromium --update-snapshots
 ```
+
+* You can add an additional flag to set the number of retries
+
+```
+    playwright test --config=tips.config.ts --project=Chromium --retries=3
+```
+
+* We can use playwright to simulate different enviroments including different devices
+
+```
+    npx playwright open --device="iPhone 11" wikipedia.org
+```
+
+* We can use playwright to convert any given web to a pdf file
+
+```
+    npx playwright pdf https://www.example.com my-file.pdf
+```
+
+* Take sceenshots on a given device and save them
+
+```
+    npx playwright screenshot --device="iPhone 11" --color-scheme=dark --wait-for-timeout=3000 twitter.com twitter-iphone-image.png
+```
+
+* Change timezone and language
+
+```
+    npx playwright open --timezone="Europe/Rome" --lang="it-IT" google.com
+```
+
+* Change geolocation
+
+```
+    npx playwright open --timezone="Europe/Rome" --lang="it-IT" --geolocation"40.323, 89.323" google.com
+```
