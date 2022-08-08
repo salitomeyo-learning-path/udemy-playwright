@@ -67,3 +67,9 @@ There are too many ways to invoke the test, because of this i will put some of t
 ```
     npx playwright open --timezone="Europe/Rome" --lang="it-IT" --geolocation"40.323, 89.323" google.com
 ```
+
+* We can create custom reports and execute them using 
+
+```
+    npx playwright test --config=tips.config.ts --project=Webkit --reporter=reporter.ts
+```
