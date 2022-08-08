@@ -61,4 +61,18 @@ test.describe.parallel("API Testing", () => {
         const responseBody = JSON.parse(await response.text())
         expect(responseBody.error).toBe('user not found')
     })
+
+    test('PUT Request - Update user', async ({ request }) => {
+        const response = await request.put(`${baseUrl}/users/2`, {
+            data: {
+                name: "New Name",
+                job: "Software Developer"
+            },
+        })
+        expect(response.status()).toBe(200)
+
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.name).toBe("New Name")
+        expect(responseBody.job).toBe("Software Developer")
+    })
 })
