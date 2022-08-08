@@ -17,8 +17,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run E2E tests
         run: npm run test:e2e
-      - name: Run Visual tests
-        run: npm run test:visual
       - name: Run API tests
         run: npm run test:api
       - name: Upload test results
