@@ -49,3 +49,21 @@ There are too many ways to invoke the test, because of this i will put some of t
 ```
     npx playwright pdf https://www.example.com my-file.pdf
 ```
+
+* Take sceenshots on a given device and save them
+
+```
+    npx playwright screenshot --device="iPhone 11" --color-scheme=dark --wait-for-timeout=3000 twitter.com twitter-iphone-image.png
+```
+
+* Change timezone and language
+
+```
+    npx playwright open --timezone="Europe/Rome" --lang="it-IT" google.com
+```
+
+* Change geolocation
+
+```
+    npx playwright open --timezone="Europe/Rome" --lang="it-IT" --geolocation"40.323, 89.323" google.com
+```
