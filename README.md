@@ -37,3 +37,15 @@ There are too many ways to invoke the test, because of this i will put some of t
 ```
     playwright test --config=tips.config.ts --project=Chromium --retries=3
 ```
+
+* We can use playwright to simulate different enviroments including different devices
+
+```
+    npx playwright open --device="iPhone 11" wikipedia.org
+```
+
+* We can use playwright to convert any given web to a pdf file
+
+```
+    npx playwright pdf https://www.example.com my-file.pdf
+```
