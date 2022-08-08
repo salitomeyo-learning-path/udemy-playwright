@@ -31,3 +31,9 @@ There are too many ways to invoke the test, because of this i will put some of t
 ```
     playwright test --config=visual.config.ts --project=Chromium --update-snapshots
 ```
+
+* You can add an additional flag to set the number of retries
+
+```
+    playwright test --config=tips.config.ts --project=Chromium --retries=3
+```
