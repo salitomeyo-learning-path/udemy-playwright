@@ -1,9 +1,15 @@
 import { test, expect } from "@playwright/test";
+import { getRandomNumber, getRandomString } from "../../utils/data-helpers"
 
 test.describe("Tips & Tricks section", () => {
     test('TestInfo Object', async ({ page }, testInfo) => {
         await page.goto('https://www.example.com')
-        console.log(testInfo.title)
+
+        let number = await getRandomNumber()
+        let string = await getRandomString()
+        console.log(number)
+        console.log(string)
+        // console.log(testInfo.title)
     })
 
     test('Test skip browser', async ({ page, browserName }) => {
