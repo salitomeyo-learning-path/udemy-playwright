@@ -4,18 +4,15 @@
   "description": "Automated software testing with playwright",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --browser=all",
-    "test:open": "npx playwright test --headed --browser=all",
     "firefox": "npx playwright test --config=playwright.config.ts --project=Firefox",
-    "firefox:open": "npx playwright test --headed --config=playwright.config.ts --project=Firefox",
+    "firefox:open": "npm run firefox -- --headed",
     "chromium": "npx playwright test --config=playwright.config.ts --project=Chromium",
-    "chromium:open": "npx playwright test --headed --config=playwright.config.ts --project=Firefox",
+    "chromium:open": "npm run chromium -- --headed",
     "webkit": "npx playwright test --config=playwright.config.ts --project=Webkit",
-    "tag:myTag": "npx playwright test --grep @myTag",
-    "tag:-myTag": "npx playwright test --grep-invert @myTag",
-    "webkit:html": "npx playwright test --config=playwright.config.ts --project=Webkit --reporter=html",
+    "webkit:html": "npm run webkit -- --reporter=html",
     "html:report": "npx playwright show-report",
-    "test:e2e": "playwright test --config=e2e.config.ts --project=Chromium"
+    "test:e2e": "playwright test --config=e2e.config.ts --project=Chromium",
+    "visual": "playwright test --config=visual.config.ts --project=Chromium"
   },
   "author": "Salome Aristizabal Giraldo (www.github.com/salitomeyo)",
   "license": "ISC",
