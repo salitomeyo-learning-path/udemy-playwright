@@ -15,7 +15,11 @@ jobs:
         run: npm ci
       - name: Install Playwright
         run: npx playwright install --with-deps
-      - name: Run your tests
+      - name: Run E2E tests
+        run: npm run test:e2e
+      - name: Run Visual tests
+        run: npm run test:visual
+      - name: Run API tests
         run: npm run test:api
       - name: Upload test results
         if: always()
